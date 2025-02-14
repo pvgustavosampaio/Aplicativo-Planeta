@@ -1,9 +1,14 @@
+//Aqui é onde permanecem as importações das bibliotecas essenciais
+
 import 'package:flutter/material.dart';
 import 'controls/controll_planet.dart';
 import 'models/class_planet.dart';
 import 'View/screen.dart';
 
 void main() => runApp(const MyApp());
+
+//Essa é a classe aplicativo, ou seja a base do código
+// Montamos aqui toda a estrutura do aplicativo
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,6 +31,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//Aqui estendemos a nossa classe criando um statfullwidget
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -33,21 +40,24 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+//Aqui ficaram armazenadas nossas funções e variáveis
+
 class _HomePageState extends State<HomePage> {
   final ControlePlaneta _controle = ControlePlaneta();
   List<Planeta> _planetas = [];
 
   @override
   void initState() {
-    super.initState();
-    _carregarPlanetas();
+    super.initState();//Inicia o código
+    _carregarPlanetas();//função para carregar os planetas já salvos no banco de dados no entrar no app
   }
 
   Future<void> _carregarPlanetas() async {
-    _planetas = await _controle.lerPlanetas();
+  _planetas = await _controle.lerPlanetas(); // Carrega os planetas do banco de dados
     setState(() {});
   }
-
+  
+  //Funcionamento da função que exibe informações sobre o planeta selecionado
   void _abrirDetalhes(Planeta planeta) {
     Navigator.push(
       context,
@@ -57,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+//Função para excluir um planeta e apresentar um alertdialog informando as consequencias
   void _excluirPlaneta(int id) async {
     showDialog(
       context: context,
@@ -85,6 +96,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+//Criação do layout e corpo do app
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,6 +163,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+//função para abrir a tela de edição do planeta
   void _abrirEdicao(BuildContext context, Planeta planeta) {
     Navigator.push(
       context,
@@ -165,6 +178,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+//aplicação da tela de fundo para um melhor design
 class TelaDetalhes extends StatelessWidget {
   const TelaDetalhes({super.key, required this.planeta});
   final Planeta planeta;

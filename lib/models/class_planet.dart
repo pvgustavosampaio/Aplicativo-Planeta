@@ -1,3 +1,5 @@
+//Definindo a classe dos planetas e seus atributos 
+
 class Planeta {
   int? id;
   String nome;

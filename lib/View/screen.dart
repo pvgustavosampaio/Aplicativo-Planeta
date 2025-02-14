@@ -1,8 +1,10 @@
+//importando as bibliotecas necessárias
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../controls/controll_planet.dart';
 import '../models/class_planet.dart';
 
+//Classe da tela de criação de planetas
 class TelaPlaneta extends StatefulWidget {
   final bool isIncluir;
   final Planeta planeta;
@@ -19,6 +21,8 @@ class TelaPlaneta extends StatefulWidget {
   State<TelaPlaneta> createState() => _TelaPlanetaState();
 }
 
+//Classe que cria o estado da tela de criação de planetas
+//Adicionando os campos e validações
 class _TelaPlanetaState extends State<TelaPlaneta> {
   final _formKey = GlobalKey<FormState>();
   final _controle = ControlePlaneta();
@@ -64,6 +68,7 @@ class _TelaPlanetaState extends State<TelaPlaneta> {
     }
   }
 
+//Criação do layout definindo os campos e validações em conjunto
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,6 +111,11 @@ class _TelaPlanetaState extends State<TelaPlaneta> {
     );
   }
 
+//Funções para criar os campos e validações dos campos de texto e 
+//numeros
+
+//Na função campo numerico esta sendo adicionado as validações e 
+//tambem o teclado de apenas numeros.
   Widget _campoNumerico(TextEditingController ctrl, String label) {
   return _campoTexto(
     ctrl,
@@ -130,6 +140,8 @@ class _TelaPlanetaState extends State<TelaPlaneta> {
   );
 }
 
+//Na função campo texto esta sendo adicionado as validações e 
+//tambem o teclado normal com letras.
 Widget _campoTexto(
   TextEditingController ctrl,
   String label, {
@@ -172,8 +184,8 @@ Widget _campoTexto(
   );
 }
 
-// Remova a extensão 'transformar' do final do arquivo
 
+//Definindo os botões de salvar e cancelar
   Widget _botao(String texto, VoidCallback acao) {
     return Card(
       elevation: 8,
@@ -195,6 +207,7 @@ Widget _campoTexto(
     );
   }
 
+//Validando os campos de texto
   String? _validarNome(String? v) {
     if (v == null || v.isEmpty) return 'Nome é obrigatório';
     if (v.length < 3) return 'Mínimo 3 caracteres';

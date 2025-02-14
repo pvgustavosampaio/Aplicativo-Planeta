@@ -1,3 +1,5 @@
+//Criação do Banco de dados
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/class_planet.dart';
